@@ -1,0 +1,38 @@
+{% extends "events/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto px-6 py-12">
+    <h1 class="text-3xl font-bold mb-8">Search Results</h1>
+    
+    {% if events %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for event in events %}
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
+                            {{ event.category.name }}
+                        </span>
+                        <span class="text-gray-500 text-sm">{{ event.date|date:"M d, Y" }}</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">{{ event.name }}</h3>
+                    <p class="text-gray-600 mb-4">{{ event.description|truncatechars:100 }}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-blue-600 font-medium">
+                            {{ event.participants.count }} Participants
+                        </span>
+                        <a href="{% url 'event-detail' event.pk %}" 
+                           class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-gray-500 text-center py-12">No events found matching your search criteria.</p>
+    {% endif %}
+</div>
+{% endblock %}
