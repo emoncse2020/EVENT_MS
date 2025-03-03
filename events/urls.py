@@ -3,7 +3,7 @@ from events.views import event_home, event_dashboard, event_detail, create_event
 
 urlpatterns = [
 
-    path('event-home/', event_home, name = "event-home"),
+    path('', event_home, name = "event-home"),
     path('event-dashboard/', event_dashboard, name ="event-dashboard"),
     path('create-event/', create_events, name="create-event"),
     path('event-detail/<int:pk>/', event_detail, name ="event-detail"),
