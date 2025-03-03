@@ -19,7 +19,7 @@ def create_events(request):
             participant = participant_form.save()
             event.participants.add(participant)
             participant.save()
-            messages.success(request, "Event and participant added successfully!")
+            # messages.success(request, "Event and participant added successfully!")
             return redirect('event-home')
 
     context = {
@@ -46,7 +46,7 @@ def update_events(request, id):
             participant = participant_form.save()
             event.participants.add(participant)
             participant.save()
-            messages.success(request, "Event and participant updated successfully!")
+            # messages.success(request, "Event and participant updated successfully!")
             return redirect('create-event')
 
     context = {
@@ -59,7 +59,7 @@ def delete_event(request, id):
     if request.method =="POST":
         event = Event.objects.get(id = id)
         event.delete()
-        messages.success(request, "Event Deleted Successfully")
+        # messages.success(request, "Event Deleted Successfully")
         return redirect('event-dashboard')
 
 
